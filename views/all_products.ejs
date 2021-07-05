@@ -1,0 +1,22 @@
+<%- include('_layouts/header'); %>
+
+
+
+<div class="small-container">
+  <h2 class="title">Products</h2>
+  <div class="row">
+    <% products.forEach(function(p){%>
+      <div class="col-4">
+        <a href="/products/<%=p.category%>/<%=p.slug%>" class="pa">
+          <img src="/images/product_imgs/<%= p.id %>/<%= p.image %>" alt="" class="pimage">
+        </a>
+        <h3><%=p.title%></h3>
+        <p>$<%=p.price%></p>
+        <a href="/products/<%=p.category%>/<%=p.slug%>" class="vd">View Details</a>
+      </div>
+    <%});%>
+  </div>
+</div>
+
+
+<%- include('_layouts/footer'); %>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%=title%></title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>
+        Treck Sports
+      </header>
+      <ul>
+        <li><a href="/products" class="l"><i class="fas fa-caret-right"></i>Products</a></li>
+        <% pages.forEach(function(page){%>
+          <%if(page.slug=="home" || page.slug=="about" || page.slug=="services" || page.slug=="contact"){%>
+          <%} else{%>
+          <li><a href="/<%=page.slug%>"><i class="fas fa-caret-right"></i><%=page.title%></a></li>
+        <%}%>
+        <%});%>
+      </ul>
+    </div>
+    <div class="containerr">
+      <div class="navbar">
+        <div class="logo">
+          <a href="/"><img src="images/logo.png" alt="" width="125px"></a>
+        </div>
+          <nav>
+            <ul>
+              <% pages.forEach(function(page){%>
+                <%if(page.slug=="home"){%>
+                  <li><a href="/"><%=page.title%></a></li>
+                <%} else if(page.slug=="about" || page.slug=="services" || page.slug=="contact"){%>
+                <li><a href="/<%=page.slug%>"><%=page.title%></a></li>
+              <%}else{%>
+              <%}%>
+              <%});%>
+            </ul>
+            <ul>
+              <li>
+                <a href="/cart/checkout">My Cart(
+                  <%if(typeof cart!=="undefined"){%>
+                    <%=cart.length%>
+                    <%}else{%>
+                      0
+                    <%}%>
+                  )</a>
+              </li>
+              <%if(user){%>
+                  <li><a href="/users/logout">(<%=user.username%>)Logout</a></li>
+              <%}else{%>
+                <li><a href="/users/register">Register</a></li>
+                <li><a href="/users/Login">Login</a></li>
+              <%}%>
+              <%if(user && user.admin==1){%>
+                  <li><a href="/admin/pages">Admin Area</a></li>
+              <%}%>
+
+            </ul>
+          </nav>
+      </div>
+    </div>
+
+    <div class="container">
+    <%- messages('messages', locals) %>
+    <% if(errors){%>
+      <% errors.forEach(function(errors){ %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= errors.msg %>
+        </div>
+  <% }); %>
+  <% } %>

@@ -1,0 +1,21 @@
+<%- include('_layouts/header'); %>
+
+<div class="account-page">
+  <div class="co">
+    <div class="row">
+      <div class="col-2">
+        <div class="form-container1">
+          <h1 class="y">Login</h1>
+          <form method="post" action="/users/login">
+            <!-- <label>Username</label> -->
+            <input type="text" name="username" class="form-control" placeholder="Username">
+            <input type="password" name="password" class="form-control"  placeholder="Password">
+            <button type="submit" class="btn">Log in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('_layouts/footer'); %>
